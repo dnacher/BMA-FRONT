@@ -21,15 +21,15 @@ export class DataDiscourseService {
     return this.http.get(`${this.baseUrl}` + `/${id}`);
   }
 
-  saveDiscourse(discourse: Discourse): Observable<Discourse> {
+  saveDiscourse(discourse: Discourse): Observable<any> {
     return this.http.post(`${this.baseUrl}` + `/`, discourse);
   }
 
-  deleteDiscourse(id: number): Observable<Discourse> {
+  deleteDiscourse(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}` + `/${id}`);
   }
 
-  updateDiscourse(id: number, discourse: any): Observable<Discourse> {
+  updateDiscourse(id: number, discourse: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}`, discourse);
   }
 

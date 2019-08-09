@@ -21,15 +21,15 @@ export class DataCallingService {
     return this.http.get(`${this.baseUrl}` + `/${id}`);
   }
 
-  saveCalling(calling: Calling): Observable<Calling> {
+  saveCalling(calling: Calling): Observable<any> {
     return this.http.post(`${this.baseUrl}` + `/`, calling);
   }
 
-  deleteCalling(id: number): Observable<Calling> {
+  deleteCalling(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}` + `/${id}`);
   }
 
-  updateCalling(id: number, calling: any): Observable<Calling> {
+  updateCalling(id: number, calling: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}`, calling);
   }
 

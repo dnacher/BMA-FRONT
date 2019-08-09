@@ -1,9 +1,28 @@
-<h1>Name: {{author.name}}</h1>
+<h1>Attendance</h1>
 
 <div>
-<ul style="color: black">
-  <li><strong>Description: </strong> {{author.description}}</li>
-  <br>
-  <button class="btn btn-danger" (click)="delete(author.idAuthor)">Delete</button>
-</ul>
+
+  <table class="table table-hover">
+    <thead>
+    <tr class="table-primary">
+      <th scope="col">Name</th>
+      <th scope="col">Surname</th>
+      <th scope="col">Attendance</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr class="table-light" *ngFor="let attendance of attendances">
+        <td>{{attendance.member.name}}</td>
+        <td>{{attendance.member.surname}}</td>
+        <td>
+          <div class="">
+            <input type="checkbox" (ngModel)="attendance.attended"  data-md-icheck (change)="toggleAttendance(attendance, $event)" class="big-checkbox btn btn-primary"/>
+          </div>
+        </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="attendances===null">loading...</div>
 </div>

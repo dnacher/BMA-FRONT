@@ -3,9 +3,7 @@ import {Discourse} from "../classes/Discourse";
 import {DataDiscourseService} from "../services/data.discourse.service";
 import {DataMemberService} from "../services/data.member.service";
 import {Member} from "../classes/Member";
-import {Observable, of} from "rxjs";
-import {delay} from "rxjs/operators";
-import { filter } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -20,7 +18,6 @@ export class DiscourseComponent implements OnInit {
   discourses: Discourse;
   mr: Member= new Member();
   members: Member[]= [];
-  selectedMember: Member;
 
   constructor(private dataDiscourseService: DataDiscourseService, private dataMemberService: DataMemberService) {
     this.loadData();
@@ -38,6 +35,19 @@ export class DiscourseComponent implements OnInit {
   }
 
   loadData() {
+    this.loadMembers();
+    this.loadDiscourses();
+  }
+
+  loadDiscourses(){
+    this.dataDiscourseService.getDiscourses().subscribe(
+      data=> {this.discourses = data;
+        console.log(this.discourses);
+      }
+    );
+  }
+
+  loadMembers(){
     this.dataMemberService.getMembers().subscribe(
       data=> {this.members = data;
         console.log(this.members);
@@ -45,16 +55,12 @@ export class DiscourseComponent implements OnInit {
     );
   }
 
-
-
   onSubmit() {
+    console.log(this.discourse);
     this.save();
-    // if(this.discourse.member.name!=null){
-    //   this.save();
-    // }else{
-    //   alert("Please fill the form");
-    // }
-
+    console.log(this.discourse);
+    this.loadDiscourses();
+    this.discourse = new Discourse();
   }
 
 

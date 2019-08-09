@@ -1,12 +1,11 @@
 <h1>Discourse</h1>
   <div class="form-group">
     <label for="member">Member</label>
-    <div *ngIf="members !=null" class="opacity" style="opacity: 0.9;">
-      <select id="member" name="member"  class="form-control" [(ngModel)]="discourse.member">
-        <option *ngFor="let member of members" [ngValue]="member">
-          {{member.surname}} {{member.name}}
-        </option>
-      </select>
+    <div *ngIf="members !=null" class="ng-input">
+        <ng-select id="member" [items]="members"
+                   bindLabel="fullname"
+                   [(ngModel)]="discourse.member">
+        </ng-select>
     </div><br>
     <label for="datePicker">Date</label>
     <div class="row">
@@ -27,25 +26,38 @@
       </div>
     </div>
     <label for="memberAssigned">Assigned by</label>
-    <div *ngIf="members !=null" class="opacity" style="opacity: 0.9;">
-      <select id="memberAssigned" name="member"  class="form-control" [(ngModel)]="discourse.assignedBy">
-        <option *ngFor="let member of members" [ngValue]="member">
-          {{member.surname}} {{member.name}}
-        </option>
-      </select>
-      <ng-select [items]="members"
-                 bindLabel="name"
-                 bindValue="id"
-                 [(ngModel)]="selectedMember">
-      </ng-select>
+    <div *ngIf="members !=null" class="ng-input">
+        <ng-select id="memberAssigned" [items]="members"
+                   bindLabel="fullname"
+                   [(ngModel)]="discourse.assignedBy">
+        </ng-select>
     </div><br>
   </div>
-
 
     <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add Discourse</button>
 
  <div *ngIf="discourses !=null" class="opacity" style="opacity: 0.9;">
-    <br>
+   <br>
+   <table class="table table-hover">
+     <thead>
+       <tr class="table-primary">
+         <th scope="col">Date</th>
+         <th scope="col">Name</th>
+         <th scope="col">Topic</th>
+         <th scope="col">Edit</th>
+         <th scope="col">Delete</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr class="table-light" *ngFor="let discourse of discourses">
+         <td><a routerLink="/discourses/{{discourse.id}}">{{discourse.date | date:'yyyy-MM-dd'}}</a></td>
+         <td>{{discourse.member.fullname}}</td>
+         <td>{{discourse.topic}}</td>
+         <td><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>
+         <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+       </tr>
+     </tbody>
+   </table>
  </div>
  <div *ngIf="discourses == null">
    <br><br>

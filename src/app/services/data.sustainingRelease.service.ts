@@ -21,15 +21,15 @@ export class DataSustainingReleaseServiceService {
     return this.http.get(`${this.baseUrl}` + `/${id}`);
   }
 
-  saveSustainingRelease(sustainingRelease: SustainingRelease): Observable<SustainingRelease> {
+  saveSustainingRelease(sustainingRelease: SustainingRelease): Observable<any> {
     return this.http.post(`${this.baseUrl}` + `/`, sustainingRelease);
   }
 
-  deleteSustainingRelease(id: number): Observable<SustainingRelease> {
+  deleteSustainingRelease(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}` + `/${id}`);
   }
 
-  updateSustainingRelease(id: number, sustainingRelease: any): Observable<SustainingRelease> {
+  updateSustainingRelease(id: number, sustainingRelease: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}`, sustainingRelease);
   }
 

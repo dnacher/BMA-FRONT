@@ -21,15 +21,15 @@ export class DataSacramentMeetingService {
     return this.http.get(`${this.baseUrl}` + `/${id}`);
   }
 
-  saveSacramentMeeting(sacramentMeeting: SacramentMeeting): Observable<SacramentMeeting> {
+  saveSacramentMeeting(sacramentMeeting: SacramentMeeting): Observable<any> {
     return this.http.post(`${this.baseUrl}` + `/`, sacramentMeeting);
   }
 
-  deleteSacramentMeeting(id: number): Observable<SacramentMeeting> {
+  deleteSacramentMeeting(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}` + `/${id}`);
   }
 
-  updateSacramentMeeting(id: number, sacramentMeeting: any): Observable<SacramentMeeting> {
+  updateSacramentMeeting(id: number, sacramentMeeting: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}`, sacramentMeeting);
   }
 

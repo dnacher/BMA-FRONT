@@ -18,19 +18,23 @@ export class DataMemberService {
     return this.http.get(`${this.baseUrl}` + '/');
   }
 
+  getMembersTest(): Observable<any> {
+    return this.http.get(`${this.baseUrl}` + '/test');
+  }
+
   getMemberById(id: any): Observable<any> {
     return this.http.get(`${this.baseUrl}` + `/${id}`);
   }
 
-  saveMember(member: Member): Observable<Member> {
+  saveMember(member: Member): Observable<any> {
     return this.http.post(`${this.baseUrl}` + `/`, member);
   }
 
-  deleteMember(id: number): Observable<Member> {
+  deleteMember(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}` + `/${id}`);
   }
 
-  updateMember(id: number, member: any): Observable<Member> {
+  updateMember(id: number, member: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}`, member);
   }
 

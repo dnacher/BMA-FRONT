@@ -5,6 +5,7 @@ import { IndexComponent } from '../app/index/index.component'
 import {HymnComponent} from "./hymn/hymn.component";
 import {MemberComponent} from "./member/member.component";
 import {DiscourseComponent} from "./discourse/discourse.component";
+import {AttendanceComponent} from "./attendance/attendance.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'discourses',
     component: DiscourseComponent
+  },
+  {
+    path: 'attendances',
+    component: AttendanceComponent
   }
 ];
 

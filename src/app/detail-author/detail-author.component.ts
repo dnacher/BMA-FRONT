@@ -8,7 +8,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 })
 export class DetailAuthorComponent implements OnInit {
 
-  author: Object;
+  author: any;
 
   ngOnInit() {}
 

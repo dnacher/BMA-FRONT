@@ -1,34 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import {Attendance} from "../classes/Attendance";
+import {Member} from "../classes/Member";
+import {DataMemberService} from "../services/data.member.service";
+import {consoleTestResultHandler} from "tslint/lib/test";
 
 @Component({
   selector: 'app-detail-author',
-  templateUrl: './detail-author.component.html',
-  styleUrls: ['./detail-author.component.scss']
+  templateUrl: './attendance.component.html',
+  styleUrls: ['./attendance.component.scss']
 })
-export class DetailAuthorComponent implements OnInit {
+export class AttendanceComponent implements OnInit {
 
-  author: any;
+  attendances: Array<Attendance> = [];
 
-  ngOnInit() {}
+  constructor(private dataMemberService: DataMemberService) {
+    this.loadMembers();
+  }
 
-  // constructor(private data: DataAuthorService, private route: ActivatedRoute, private routeRedirect: Router) {
-  //   this.route.params.subscribe( params => this.author = params.id)
-  // }
+  ngOnInit() {
+    this.loadMembers();
+  }
 
-  // ngOnInit() {
-  //   this.data.getAuthorById(this.author).subscribe(
-  //     data => this.author = data
-  //   )
-  // }
-  //
-  // delete(idAuthor: number) {
-  //   this.data.deleteAuthor(idAuthor) .subscribe(
-  //     data => {
-  //       console.log(data);
-  //     },
-  //     info => console.log('Info: ' + info.status + " " + info.statusText));
-  //     this.routeRedirect.navigate(['']);
-  // }
+  loadMembers(){
+    this.dataMemberService.getMembersTest().subscribe(
+      data=> {this.attendances = data;
+      }
+    );
+  }
+
+  toggleAttendance(attendance: Attendance, e){
+    attendance.attended = e.target.checked;
+  }
 
 }

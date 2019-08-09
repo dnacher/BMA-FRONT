@@ -21,15 +21,15 @@ export class DataHymnService {
     return this.http.get(`${this.baseUrl}` + `/${id}`);
   }
 
-  saveHymn(hymn: Hymn): Observable<Hymn> {
+  saveHymn(hymn: Hymn): Observable<any> {
     return this.http.post(`${this.baseUrl}` + `/`, hymn);
   }
 
-  deleteHymn(id: number): Observable<Hymn> {
+  deleteHymn(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}` + `/${id}`);
   }
 
-  updateHymn(id: number, hymn: any): Observable<Hymn> {
+  updateHymn(id: number, hymn: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}`, hymn);
   }
 
