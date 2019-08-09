@@ -37,7 +37,7 @@ export class HymnComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.hymn.name!=null){
+    if(this.hymn.title!=null){
       this.save();
     }else{
       alert("Please fill the form");

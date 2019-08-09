@@ -12,11 +12,31 @@
 
  <div *ngIf="members !=null" class="opacity" style="opacity: 0.9;">
     <br>
-    <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let member of members">
-          <a routerLink="/member/{{member.id}}">{{member.surname}}, {{member.name}}</a>
-      </li>
-    </ul>
+   <table class="table table-hover">
+     <thead>
+     <tr class="table-primary">
+       <th scope="col">Name</th>
+       <th scope="col">Surname</th>
+       <th scope="col">Calling</th>
+       <th scope="col">Edit</th>
+       <th scope="col">Delete</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr class="table-light" *ngFor="let member of members">
+       <td><a routerLink="/members/{{member.id}}">{{member.name}}</a></td>
+       <td>{{member.surname}}</td>
+       <div *ngIf="member.calling !=null" class="opacity" style="opacity: 0.9;">
+         <td>{{member.calling.name}}</td>
+       </div>
+       <div *ngIf="member.calling ===null" class="opacity" style="opacity: 0.9;">
+         <td></td>
+       </div>
+       <td><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>
+       <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+     </tr>
+     </tbody>
+   </table>
  </div>
  <div *ngIf="members == null">
    <br><br>

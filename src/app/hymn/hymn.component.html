@@ -1,7 +1,7 @@
 <h1>Hymns</h1>
     <div class="form-group">
       <label for="name">Name: </label>
-      <input type="text" class="form-control" id="name" [(ngModel)]="hymn.name" name="name" required>
+      <input type="text" class="form-control" id="name" [(ngModel)]="hymn.title" name="name" required>
     </div><br>
 
     <div class="form-group">
@@ -13,20 +13,30 @@
       <label for="name">Piano Number: </label>
       <input type="text" class="form-control" id="pianoNumber" [(ngModel)]="hymn.pianoNumber" name="pianoNumber" required>
     </div><br>
-    <!--<div class="form-group">-->
-      <!--<label for="description">Description: </label>-->
-      <!--<input type="text" class="form-control" id="description" [(ngModel)]="author.description" name="description" required>-->
-    <!--</div><br>-->
     <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add Hymn</button>
 
  <div *ngIf="hymns !=null" class="opacity" style="opacity: 0.9;">
     <br>
-    <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let hymn of hymns">
-          <a routerLink="/hymn/{{hymn.id}}">{{hymn.number}} - {{hymn.name}}</a>
-          <span class="badge badge-primary badge-pill">{{hymn.pianoNumber}}</span>
-      </li>
-    </ul>
+     <table class="table table-hover">
+       <thead>
+       <tr class="table-primary">
+         <th scope="col">#</th>
+         <th scope="col">Title</th>
+         <th scope="col">Piano #</th>
+         <th scope="col">Edit</th>
+         <th scope="col">Delete</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr class="table-light" *ngFor="let hymn of hymns">
+         <td><a routerLink="/hymns/{{hymn.id}}">{{hymn.number}}</a></td>
+         <td>{{hymn.title}}</td>
+         <td>{{hymn.pianoNumber}}</td>
+         <td><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>
+         <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+       </tr>
+       </tbody>
+     </table>
  </div>
  <div *ngIf="hymns == null">
    <br><br>

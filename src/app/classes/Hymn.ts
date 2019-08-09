@@ -1,6 +1,6 @@
 export class Hymn {
   id: number;
-  name: string;
+  title: string;
   number: number;
   pianoNumber: number;
 
