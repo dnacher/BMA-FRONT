@@ -1,0 +1,53 @@
+<h1>Discourse</h1>
+  <div class="form-group">
+    <label for="member">Member</label>
+    <div *ngIf="members !=null" class="opacity" style="opacity: 0.9;">
+      <select id="member" name="member"  class="form-control" [(ngModel)]="discourse.member">
+        <option *ngFor="let member of members" [ngValue]="member">
+          {{member.surname}} {{member.name}}
+        </option>
+      </select>
+    </div><br>
+    <label for="datePicker">Date</label>
+    <div class="row">
+      <div class="col-xs-12 col-12 col-md-4 form-group">
+        <input id="datePicker" type="date"
+               placeholder="Datepicker"
+               class="form-control"
+               [(ngModel)]="discourse.date">
+      </div>
+    </div>
+    <label for="topic">Topic</label>
+    <div class="row">
+      <div class="col-xs-12 col-12 col-md-4 form-group">
+        <input id="topic" type="text"
+               placeholder="Topic"
+               class="form-control"
+               [(ngModel)]="discourse.topic">
+      </div>
+    </div>
+    <label for="memberAssigned">Assigned by</label>
+    <div *ngIf="members !=null" class="opacity" style="opacity: 0.9;">
+      <select id="memberAssigned" name="member"  class="form-control" [(ngModel)]="discourse.assignedBy">
+        <option *ngFor="let member of members" [ngValue]="member">
+          {{member.surname}} {{member.name}}
+        </option>
+      </select>
+      <ng-select [items]="members"
+                 bindLabel="name"
+                 bindValue="id"
+                 [(ngModel)]="selectedMember">
+      </ng-select>
+    </div><br>
+  </div>
+
+
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add Discourse</button>
+
+ <div *ngIf="discourses !=null" class="opacity" style="opacity: 0.9;">
+    <br>
+ </div>
+ <div *ngIf="discourses == null">
+   <br><br>
+  <h3>No discourses to display</h3>
+</div>

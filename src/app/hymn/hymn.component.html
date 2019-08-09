@@ -1,0 +1,34 @@
+<h1>Hymns</h1>
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="hymn.name" name="name" required>
+    </div><br>
+
+    <div class="form-group">
+      <label for="name">Number: </label>
+      <input type="text" class="form-control" id="number" [(ngModel)]="hymn.number" name="number" required>
+    </div><br>
+
+    <div class="form-group">
+      <label for="name">Piano Number: </label>
+      <input type="text" class="form-control" id="pianoNumber" [(ngModel)]="hymn.pianoNumber" name="pianoNumber" required>
+    </div><br>
+    <!--<div class="form-group">-->
+      <!--<label for="description">Description: </label>-->
+      <!--<input type="text" class="form-control" id="description" [(ngModel)]="author.description" name="description" required>-->
+    <!--</div><br>-->
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add Hymn</button>
+
+ <div *ngIf="hymns !=null" class="opacity" style="opacity: 0.9;">
+    <br>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let hymn of hymns">
+          <a routerLink="/hymn/{{hymn.id}}">{{hymn.number}} - {{hymn.name}}</a>
+          <span class="badge badge-primary badge-pill">{{hymn.pianoNumber}}</span>
+      </li>
+    </ul>
+ </div>
+ <div *ngIf="hymns == null">
+   <br><br>
+  <h3>No hymns to display</h3>
+</div>

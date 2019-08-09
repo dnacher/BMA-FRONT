@@ -1,0 +1,36 @@
+<nav>
+  <ul>
+    <li>
+      <a routerLink="" [class.activated] = "currentUrl == '/'">
+        <i class="material-icons">supervised_user_circle</i>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="authors" [class.activated] = "currentUrl == '/authors'">
+        <i class="material-icons">account_box</i>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="books" [class.activated] = "currentUrl == '/books'">
+        <i class="material-icons">library_books</i>
+      </a>
+    </li>
+    <li>
+      <a routerLink="hymns" [class.activated] = "currentUrl == '/hymns'">
+        <i class="material-icons">library_books</i>
+      </a>
+    </li>
+    <li>
+      <a routerLink="members" [class.activated] = "currentUrl == '/members'">
+        <i class="material-icons">account_box</i>
+      </a>
+    </li>
+    <li>
+      <a routerLink="discourses" [class.activated] = "currentUrl == '/discourses'">
+        <i class="material-icons">account_box</i>
+      </a>
+    </li>
+  </ul>
+</nav>

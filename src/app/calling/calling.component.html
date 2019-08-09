@@ -1,0 +1,20 @@
+<h1>Calling</h1>
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="calling.name" name="name" required>
+    </div><br>
+
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add Calling</button>
+
+ <div *ngIf="callings !=null" class="opacity" style="opacity: 0.9;">
+    <br>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let calling of callings">
+          <a routerLink="/calling/{{calling.id}}">{{calling.name}}</a>
+      </li>
+    </ul>
+ </div>
+ <div *ngIf="callings == null">
+   <br><br>
+  <h3>No callings to display</h3>
+</div>
