@@ -9,7 +9,7 @@ import {Hymn} from "../classes/Hymn";
 
 export class DataHymnService {
 
-  private baseUrl = 'http://localhost:8080/hymns';
+  private baseUrl = 'https://bma-back.herokuapp.com/hymns';
 
   constructor(private http: HttpClient) {   }
 

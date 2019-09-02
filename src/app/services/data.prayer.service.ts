@@ -9,7 +9,7 @@ import {Prayer} from "../classes/Prayer";
 
 export class DataPrayerService {
 
-  private baseUrl = 'http://localhost:8080/prayers';
+  private baseUrl = 'https://bma-back.herokuapp.com/prayers';
 
   constructor(private http: HttpClient) {   }
 

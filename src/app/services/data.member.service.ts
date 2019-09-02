@@ -10,7 +10,7 @@ import {delay} from "rxjs/operators";
 
 export class DataMemberService {
 
-  private baseUrl = 'http://localhost:8080/members';
+  private baseUrl = 'https://bma-back.herokuapp.com/members';
 
   constructor(private http: HttpClient) {   }
 

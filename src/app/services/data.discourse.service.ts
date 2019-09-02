@@ -9,7 +9,7 @@ import {Discourse} from "../classes/Discourse";
 
 export class DataDiscourseService {
 
-  private baseUrl = 'http://localhost:8080/discourses';
+  private baseUrl = 'https://bma-back.herokuapp.com/discourses';
 
   constructor(private http: HttpClient) {   }
 

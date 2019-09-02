@@ -9,7 +9,7 @@ import {SustainingRelease} from "../classes/SustainingRelease";
 
 export class DataSustainingReleaseServiceService {
 
-  private baseUrl = 'http://localhost:8080/sustaining_releases';
+  private baseUrl = 'https://bma-back.herokuapp.com/sustaining_releases';
 
   constructor(private http: HttpClient) {   }
 
