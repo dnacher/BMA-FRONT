@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import {Attendance} from "../classes/Attendance";
-import {Member} from "../classes/Member";
 import {DataMemberService} from "../services/data.member.service";
-import {consoleTestResultHandler} from "tslint/lib/test";
+import {DataAttendanceService} from "../services/data.attendance.service";
+
 
 @Component({
-  selector: 'app-detail-author',
+  selector: 'app-attendance',
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.scss']
 })
 export class AttendanceComponent implements OnInit {
 
   attendances: Array<Attendance> = [];
+  currentPage: number = 1;
+  loading: boolean=true;
 
-  constructor(private dataMemberService: DataMemberService) {
+  constructor(private dataMemberService: DataMemberService,private dataAttendanceService: DataAttendanceService) {
     this.loadMembers();
   }
 
@@ -22,8 +24,9 @@ export class AttendanceComponent implements OnInit {
   }
 
   loadMembers(){
-    this.dataMemberService.getMembersTest().subscribe(
-      data=> {this.attendances = data;
+    this.dataAttendanceService.getOrCreateAttendances().subscribe(
+      data => {
+        this.attendances = data;
       }
     );
   }
@@ -32,4 +35,11 @@ export class AttendanceComponent implements OnInit {
     attendance.attended = e.target.checked;
   }
 
+  SendAttendance(){
+    console.log(this.attendances);
+    // this.dataAttendanceService.saveAttendanceList(this.attendances);
+    this.dataAttendanceService.saveAttendances(this.attendances).subscribe(
+      data => this.loadMembers(),
+      info => console.log(info));
+  }
 }

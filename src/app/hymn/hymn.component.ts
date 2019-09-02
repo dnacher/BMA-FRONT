@@ -12,7 +12,7 @@ export class HymnComponent implements OnInit {
 
 
   hymn: Hymn = new Hymn();
-
+  currentPage: number = 1;
   hymns: Hymn[];
 
   constructor(private data: DataHymnService) {

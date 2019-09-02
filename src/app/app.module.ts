@@ -14,6 +14,7 @@ import {DiscourseComponent} from "./discourse/discourse.component";
 import {CallingComponent} from "./calling/calling.component";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {AttendanceComponent} from "./attendance/attendance.component";
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {AttendanceComponent} from "./attendance/attendance.component";
     FormsModule,
     BrowserAnimationsModule,
     NgSelectModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

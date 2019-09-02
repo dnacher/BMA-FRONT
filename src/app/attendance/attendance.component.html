@@ -1,28 +1,47 @@
-<h1>Attendance</h1>
 
-<div>
-
-  <table class="table table-hover">
-    <thead>
-    <tr class="table-primary">
-      <th scope="col">Name</th>
-      <th scope="col">Surname</th>
-      <th scope="col">Attendance</th>
-    </tr>
-    </thead>
-    <tbody>
-
-    <tr class="table-light" *ngFor="let attendance of attendances">
-        <td>{{attendance.member.name}}</td>
-        <td>{{attendance.member.surname}}</td>
-        <td>
-          <div class="">
-            <input type="checkbox" (ngModel)="attendance.attended"  data-md-icheck (change)="toggleAttendance(attendance, $event)" class="big-checkbox btn btn-primary"/>
-          </div>
-        </td>
-    </tr>
-    </tbody>
-  </table>
-
-  <div *ngIf="attendances===null">loading...</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Attendance</h1><br>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <br>
+      <div>
+        <table class="table table-hover">
+          <thead>
+          <tr class="table-primary">
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">date</th>
+            <th scope="col">Attendance</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr class="table-light" *ngFor="let attendance of attendances | paginate: {itemsPerPage: 10, currentPage: currentPage}">
+                <td>{{attendance.member.name}}</td>
+                <td>{{attendance.member.surname}}</td>
+              <td>{{attendance.date}}</td>
+                <td>
+                  <div class="">
+                    <input type="checkbox" [(ngModel)]="attendance.attended"  data-md-icheck (change)="toggleAttendance(attendance, $event)" class="big-checkbox btn btn-primary"/>
+                  </div>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col-auto">
+      <button class="btn btn-primary btn-lg" (click)="SendAttendance()">Send</button>
+    </div>
+  </div>
 </div>

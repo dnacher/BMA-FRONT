@@ -28,7 +28,7 @@
        </tr>
        </thead>
        <tbody>
-       <tr class="table-light" *ngFor="let hymn of hymns">
+       <tr class="table-light" *ngFor="let hymn of hymns| paginate: {itemsPerPage: 10, currentPage: currentPage}">
          <td><a routerLink="/hymns/{{hymn.id}}">{{hymn.number}}</a></td>
          <td>{{hymn.title}}</td>
          <td>{{hymn.pianoNumber}}</td>
@@ -37,6 +37,7 @@
        </tr>
        </tbody>
      </table>
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
  </div>
  <div *ngIf="hymns == null">
    <br><br>

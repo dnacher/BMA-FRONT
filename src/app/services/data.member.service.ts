@@ -31,7 +31,7 @@ export class DataMemberService {
   }
 
   deleteMember(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}` + `/${id}`);
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
   updateMember(id: number, member: any): Observable<any> {

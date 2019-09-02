@@ -18,6 +18,7 @@ export class DiscourseComponent implements OnInit {
   discourses: Discourse;
   mr: Member= new Member();
   members: Member[]= [];
+  currentPage: number = 1;
 
   constructor(private dataDiscourseService: DataDiscourseService, private dataMemberService: DataMemberService) {
     this.loadData();
@@ -34,6 +35,13 @@ export class DiscourseComponent implements OnInit {
       this.discourse = new Discourse();
   }
 
+  delete(discourse: Discourse){
+    this.dataDiscourseService.deleteDiscourse(discourse.id).subscribe(
+      data => this.loadData(),
+      info => console.log(info));
+    this.loadData();
+  }
+
   loadData() {
     this.loadMembers();
     this.loadDiscourses();
@@ -42,7 +50,6 @@ export class DiscourseComponent implements OnInit {
   loadDiscourses(){
     this.dataDiscourseService.getDiscourses().subscribe(
       data=> {this.discourses = data;
-        console.log(this.discourses);
       }
     );
   }
@@ -50,15 +57,12 @@ export class DiscourseComponent implements OnInit {
   loadMembers(){
     this.dataMemberService.getMembers().subscribe(
       data=> {this.members = data;
-        console.log(this.members);
       }
     );
   }
 
   onSubmit() {
-    console.log(this.discourse);
     this.save();
-    console.log(this.discourse);
     this.loadDiscourses();
     this.discourse = new Discourse();
   }

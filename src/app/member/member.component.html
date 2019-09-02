@@ -23,7 +23,7 @@
      </tr>
      </thead>
      <tbody>
-     <tr class="table-light" *ngFor="let member of members">
+     <tr class="table-light" *ngFor="let member of members | paginate: {itemsPerPage: 10, currentPage: currentPage}">
        <td><a routerLink="/members/{{member.id}}">{{member.name}}</a></td>
        <td>{{member.surname}}</td>
        <div *ngIf="member.calling !=null" class="opacity" style="opacity: 0.9;">
@@ -33,10 +33,11 @@
          <td></td>
        </div>
        <td><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>
-       <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+       <td><button class="btn btn-danger" (click)="delete(member)"><i class="fa fa-trash"></i></button></td>
      </tr>
      </tbody>
    </table>
+   <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
  </div>
  <div *ngIf="members == null">
    <br><br>

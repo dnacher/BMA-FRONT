@@ -12,7 +12,7 @@ export class MemberComponent implements OnInit {
 
 
   member: Member = new Member();
-
+  currentPage: number = 1;
   members: Member[];
 
   constructor(private data: DataMemberService) {
@@ -42,7 +42,13 @@ export class MemberComponent implements OnInit {
     }else{
       alert("Please fill the form");
     }
+  }
 
+  delete(member: Member){
+    this.data.deleteMember(member.id).subscribe(
+      data => this.loadData(),
+      info => console.log(info));
+    this.loadData();
   }
 
 }

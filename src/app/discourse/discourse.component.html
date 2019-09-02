@@ -49,15 +49,16 @@
        </tr>
      </thead>
      <tbody>
-       <tr class="table-light" *ngFor="let discourse of discourses">
+       <tr class="table-light" *ngFor="let discourse of discourses | paginate: {itemsPerPage: 10, currentPage: currentPage}">
          <td><a routerLink="/discourses/{{discourse.id}}">{{discourse.date | date:'yyyy-MM-dd'}}</a></td>
          <td>{{discourse.member.fullname}}</td>
          <td>{{discourse.topic}}</td>
          <td><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>
-         <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+         <td><button class="btn btn-danger" (click)="delete(discourse)"><i class="fa fa-trash"></i></button></td>
        </tr>
      </tbody>
    </table>
+   <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
  </div>
  <div *ngIf="discourses == null">
    <br><br>
