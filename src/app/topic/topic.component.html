@@ -1,0 +1,45 @@
+<h1>Member</h1>
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="member.name" name="name" required>
+    </div><br>
+
+    <div class="form-group">
+      <label for="name">Surname: </label>
+      <input type="text" class="form-control" id="number" [(ngModel)]="member.surname" name="number" required>
+    </div><br>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add Member</button>
+
+ <div *ngIf="members !=null" class="opacity" style="opacity: 0.9;">
+    <br>
+   <table class="table table-hover">
+     <thead>
+     <tr class="table-primary">
+       <th scope="col">Name</th>
+       <th scope="col">Surname</th>
+       <th scope="col">Calling</th>
+       <th scope="col">Edit</th>
+       <th scope="col">Delete</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr class="table-light" *ngFor="let member of members | paginate: {itemsPerPage: 10, currentPage: currentPage}">
+       <td><a routerLink="/members/{{member.id}}">{{member.name}}</a></td>
+       <td>{{member.surname}}</td>
+       <div *ngIf="member.calling !=null" class="opacity" style="opacity: 0.9;">
+         <td>{{member.calling.name}}</td>
+       </div>
+       <div *ngIf="member.calling ===null" class="opacity" style="opacity: 0.9;">
+         <td></td>
+       </div>
+       <td><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>
+       <td><button class="btn btn-danger" (click)="delete(member)"><i class="fa fa-trash"></i></button></td>
+     </tr>
+     </tbody>
+   </table>
+   <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+ </div>
+ <div *ngIf="members == null">
+   <br><br>
+  <h3>No members to display</h3>
+</div>
