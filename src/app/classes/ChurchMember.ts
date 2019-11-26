@@ -1,6 +1,6 @@
 import {Calling} from "./Calling";
 
-export class Member {
+export class ChurchMember {
     id: number;
     name: string;
     surname: string;

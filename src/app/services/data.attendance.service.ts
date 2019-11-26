@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import {Observable, of} from 'rxjs';
-import {Member} from "../classes/Member";
+import {ChurchMember} from "../classes/ChurchMember";
 import {delay} from "rxjs/operators";
 import {Attendance} from "../classes/Attendance";
 
@@ -11,7 +11,8 @@ import {Attendance} from "../classes/Attendance";
 
 export class DataAttendanceService {
 
-  private baseUrl = 'https://bma-back.herokuapp.com/attendances';
+  // private baseUrl = 'https://bma-back.herokuapp.com/attendances';
+  private baseUrl = 'http://localhost:8080/attendances';
 
   constructor(private http: HttpClient) {   }
 

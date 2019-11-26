@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import {Observable, of} from 'rxjs';
-import {Member} from "../classes/Member";
-import {delay} from "rxjs/operators";
+import {ChurchMember} from "../classes/ChurchMember";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,8 @@ import {delay} from "rxjs/operators";
 
 export class DataMemberService {
 
-  private baseUrl = 'https://bma-back.herokuapp.com/members';
-
+  // private baseUrl = 'https://bma-back.herokuapp.com/members';
+  private baseUrl = 'http://localhost:8080/members';
   constructor(private http: HttpClient) {   }
 
   getMembers(): Observable<any> {
@@ -26,7 +25,7 @@ export class DataMemberService {
     return this.http.get(`${this.baseUrl}` + `/${id}`);
   }
 
-  saveMember(member: Member): Observable<any> {
+  saveMember(member: ChurchMember): Observable<any> {
     return this.http.post(`${this.baseUrl}` + `/`, member);
   }
 

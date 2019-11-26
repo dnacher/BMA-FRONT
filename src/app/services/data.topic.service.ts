@@ -1,36 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import {Discourse} from "../classes/Discourse";
+import {Topic} from "../classes/Topic";
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class DataDiscourseService {
+export class DataTopicService {
 
-  private baseUrl = 'https://bma-back.herokuapp.com/discourses';
-
+  // private baseUrl = 'https://bma-back.herokuapp.com/topics';
+  private baseUrl = 'http://localhost:8080/topics';
   constructor(private http: HttpClient) {   }
 
-  getDiscourses(): Observable<any> {
+  getTopics(): Observable<any> {
     return this.http.get(`${this.baseUrl}` + '/');
   }
 
-  getDiscoursesById(id: any): Observable<any> {
+  getTopicById(id: any): Observable<any> {
     return this.http.get(`${this.baseUrl}` + `/${id}`);
   }
 
-  saveDiscourse(discourse: Discourse): Observable<any> {
-    return this.http.post(`${this.baseUrl}` + `/`, discourse);
+  saveTopic(topic: Topic): Observable<any> {
+    return this.http.post(`${this.baseUrl}` + `/`, topic);
   }
 
-  deleteDiscourse(id: number): Observable<any> {
+  deleteTopic(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}` + `/${id}`);
   }
 
-  updateDiscourse(id: number, discourse: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, discourse);
+  updateTopic(id: number, topic: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${id}`, topic);
   }
 
 }

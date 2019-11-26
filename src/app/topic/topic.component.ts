@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {Member} from "../classes/Member";
-import { DataMemberService} from "../services/data.member.service";
+import {Topic} from "../classes/Topic";
+import {DataTopicService} from "../services/data.topic.service";
 
 @Component({
-  selector: 'app-member',
-  templateUrl: './member.component.html',
-  styleUrls: ['./member.component.scss']
+  selector: 'app-Topic',
+  templateUrl: './topic.component.html',
+  styleUrls: ['./topic.component.scss']
 })
 
-export class MemberComponent implements OnInit {
+export class TopicComponent implements OnInit {
 
-
-  member: Member = new Member();
+  topic: Topic = new Topic();
   currentPage: number = 1;
-  members: Member[];
+  topics: Topic[];
 
-  constructor(private data: DataMemberService) {
+  constructor(private data: DataTopicService) {
     this.loadData();
    }
 
@@ -24,28 +23,28 @@ export class MemberComponent implements OnInit {
   }
 
   save() {
-    this.data.saveMember(this.member).subscribe(
+    this.data.saveTopic(this.topic).subscribe(
       data => this.loadData(),
       info => console.log(info));
       this.loadData();
-    this.member = new Member();
+    this.topic = new Topic();
   }
 
   loadData() {
-    this.data.getMembers().subscribe(
-      data => {this.members = data;});
+    this.data.getTopics().subscribe(
+      data => {this.topics = data;});
   }
 
   onSubmit() {
-    if(this.member.name!=null && this.member.surname!=null){
+    if(this.topic.name!=null){
       this.save();
     }else{
       alert("Please fill the form");
     }
   }
 
-  delete(member: Member){
-    this.data.deleteMember(member.id).subscribe(
+  delete(topic: Topic){
+    this.data.deleteTopic(topic.id).subscribe(
       data => this.loadData(),
       info => console.log(info));
     this.loadData();

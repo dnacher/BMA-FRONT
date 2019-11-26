@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Member} from "../classes/Member";
+import {ChurchMember} from "../classes/ChurchMember";
 import { DataMemberService} from "../services/data.member.service";
 
 @Component({
@@ -11,9 +11,9 @@ import { DataMemberService} from "../services/data.member.service";
 export class MemberComponent implements OnInit {
 
 
-  member: Member = new Member();
+  member: ChurchMember = new ChurchMember();
   currentPage: number = 1;
-  members: Member[];
+  members: ChurchMember[];
 
   constructor(private data: DataMemberService) {
     this.loadData();
@@ -28,7 +28,7 @@ export class MemberComponent implements OnInit {
       data => this.loadData(),
       info => console.log(info));
       this.loadData();
-    this.member = new Member();
+    this.member = new ChurchMember();
   }
 
   loadData() {
@@ -44,7 +44,7 @@ export class MemberComponent implements OnInit {
     }
   }
 
-  delete(member: Member){
+  delete(member: ChurchMember){
     this.data.deleteMember(member.id).subscribe(
       data => this.loadData(),
       info => console.log(info));

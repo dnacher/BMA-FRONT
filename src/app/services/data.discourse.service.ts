@@ -9,8 +9,8 @@ import {Discourse} from "../classes/Discourse";
 
 export class DataDiscourseService {
 
-  private baseUrl = 'https://bma-back.herokuapp.com/discourses';
-
+  // private baseUrl = 'https://bma-back.herokuapp.com/discourses';
+  private baseUrl = 'http://localhost:8080/discourses';
   constructor(private http: HttpClient) {   }
 
   getDiscourses(): Observable<any> {

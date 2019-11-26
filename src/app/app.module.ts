@@ -15,6 +15,7 @@ import {CallingComponent} from "./calling/calling.component";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {AttendanceComponent} from "./attendance/attendance.component";
 import {NgxPaginationModule} from 'ngx-pagination';
+import {TopicComponent} from "./topic/topic.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     IndexComponent,
     DiscourseComponent,
     CallingComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    TopicComponent
   ],
   imports: [
     BrowserModule,

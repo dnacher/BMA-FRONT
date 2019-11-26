@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Discourse} from "../classes/Discourse";
 import {DataDiscourseService} from "../services/data.discourse.service";
 import {DataMemberService} from "../services/data.member.service";
-import {Member} from "../classes/Member";
-import { DatePipe } from '@angular/common';
+import {DataTopicService} from "../services/data.topic.service";
+import {ChurchMember} from "../classes/ChurchMember";
+import {Topic} from "../classes/Topic";
 
 
 @Component({
@@ -15,12 +16,14 @@ import { DatePipe } from '@angular/common';
 export class DiscourseComponent implements OnInit {
 
   discourse: Discourse = new Discourse();
-  discourses: Discourse;
-  mr: Member= new Member();
-  members: Member[]= [];
+  discourses: Discourse[]= [];
+  mr: ChurchMember= new ChurchMember();
+  members: ChurchMember[]= [];
+  topics: Topic[]=[];
+
   currentPage: number = 1;
 
-  constructor(private dataDiscourseService: DataDiscourseService, private dataMemberService: DataMemberService) {
+  constructor(private dataDiscourseService: DataDiscourseService, private dataMemberService: DataMemberService, private dataTopicService: DataTopicService) {
     this.loadData();
    }
 
@@ -45,6 +48,7 @@ export class DiscourseComponent implements OnInit {
   loadData() {
     this.loadMembers();
     this.loadDiscourses();
+    this.loadTopics();
   }
 
   loadDiscourses(){
@@ -52,6 +56,12 @@ export class DiscourseComponent implements OnInit {
       data=> {this.discourses = data;
       }
     );
+  }
+
+  loadTopics(){
+    this.dataTopicService.getTopics().subscribe(
+      data => {this.topics = data}
+    )
   }
 
   loadMembers(){

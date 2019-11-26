@@ -1,5 +1,4 @@
-export class Calling {
+export class Topic {
     id: number;
     name: string;
-
 }

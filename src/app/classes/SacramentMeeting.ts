@@ -1,7 +1,7 @@
 import {Hymn} from "./Hymn";
 import {Prayer} from "./Prayer";
 import {Discourse} from "./Discourse";
-import {Member} from "./Member";
+import {ChurchMember} from "./ChurchMember";
 import {SustainingRelease} from "./SustainingRelease";
 
 export class SacramentMeeting {
@@ -12,8 +12,8 @@ export class SacramentMeeting {
     sustainingReleases: SustainingRelease[];
     prayers: Prayer[];
     discourses: Discourse[];
-    preside: Member;
-    lead: Member;
+    preside: ChurchMember;
+    lead: ChurchMember;
     assistance: number;
 
 }

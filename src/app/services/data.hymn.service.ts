@@ -9,8 +9,8 @@ import {Hymn} from "../classes/Hymn";
 
 export class DataHymnService {
 
-  private baseUrl = 'https://bma-back.herokuapp.com/hymns';
-
+  // private baseUrl = 'https://bma-back.herokuapp.com/hymns';
+  private baseUrl = 'http://localhost:8080/hymns';
   constructor(private http: HttpClient) {   }
 
   getHymns(): Observable<any> {

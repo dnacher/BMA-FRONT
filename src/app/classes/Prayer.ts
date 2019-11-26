@@ -1,7 +1,7 @@
-import {Member} from "./Member";
+import {ChurchMember} from "./ChurchMember";
 
 export class Prayer {
   id: number;
-  member: Member;
+  member: ChurchMember;
   date: Date;
 }

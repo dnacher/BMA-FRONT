@@ -17,14 +17,13 @@
       </div>
     </div>
     <label for="topic">Topic</label>
-    <div class="row">
-      <div class="col-xs-12 col-12 col-md-4 form-group">
-        <input id="topic" type="text"
-               placeholder="Topic"
-               class="form-control"
-               [(ngModel)]="discourse.topic">
-      </div>
-    </div>
+    <div *ngIf="members !=null" class="ng-input">
+      <ng-select id="topic" [items]="topics"
+                 bindLabel="name"
+                 [(ngModel)]="discourse.topic">
+      </ng-select>
+    </div><br>
+
     <label for="memberAssigned">Assigned by</label>
     <div *ngIf="members !=null" class="ng-input">
         <ng-select id="memberAssigned" [items]="members"

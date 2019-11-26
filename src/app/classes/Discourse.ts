@@ -1,9 +1,10 @@
-import {Member} from "./Member";
+import {ChurchMember} from "./ChurchMember";
+import {Topic} from "./Topic";
 
 export class Discourse {
   id: number;
-  member: Member;
-  topic: string;
-  assignedBy:Member;
+  member: ChurchMember;
+  topic: Topic;
+  assignedBy:ChurchMember;
   date: Date;
 }
