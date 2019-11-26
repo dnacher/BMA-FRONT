@@ -36,11 +36,9 @@ export class AttendanceComponent implements OnInit {
   }
 
   SendAttendance(){
-    console.log(this.attendances);
     if(this.attendances[0].id!=null){
       this.dataAttendanceService.updateAttendances(this.attendances).subscribe(
-        data => this.loadMembers(),
-        info => console.log(info));
+        data => this.loadMembers(),info => console.log(info));
     }else{
       this.dataAttendanceService.saveAttendances(this.attendances).subscribe(
         data => this.loadMembers(),
