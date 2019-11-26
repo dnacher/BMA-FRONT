@@ -36,6 +36,9 @@ export class DataAttendanceService {
     return this.http.post(`${this.baseUrl}` + `/mul`, attendances);
   }
 
+  updateAttendances(attendances: Attendance[]): Observable<any> {
+    return this.http.put(`${this.baseUrl}` + `/mul`, attendances);
+  }
   deleteAttendance(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }

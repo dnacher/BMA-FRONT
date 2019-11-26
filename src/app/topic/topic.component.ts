@@ -32,7 +32,8 @@ export class TopicComponent implements OnInit {
 
   loadData() {
     this.data.getTopics().subscribe(
-      data => {this.topics = data;});
+      data => {this.topics = data;
+      });
   }
 
   onSubmit() {

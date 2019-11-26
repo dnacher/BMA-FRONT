@@ -13,6 +13,7 @@
         <table class="table table-hover">
           <thead>
           <tr class="table-primary">
+            <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Surname</th>
             <th scope="col">date</th>
@@ -21,8 +22,9 @@
           </thead>
           <tbody>
             <tr class="table-light" *ngFor="let attendance of attendances | paginate: {itemsPerPage: 10, currentPage: currentPage}">
-                <td>{{attendance.member.name}}</td>
-                <td>{{attendance.member.surname}}</td>
+              <td>{{attendance.id}}</td>
+              <td>{{attendance.churchMember.name}}</td>
+                <td>{{attendance.churchMember.surname}}</td>
               <td>{{attendance.date}}</td>
                 <td>
                   <div class="">

@@ -2,7 +2,7 @@ import {ChurchMember} from "./ChurchMember";
 
 export class Attendance {
     id: number;
-    member: ChurchMember;
+    churchMember: ChurchMember;
     attended: boolean;
     date: Date;
 }
