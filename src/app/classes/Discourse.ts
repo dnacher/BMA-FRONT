@@ -3,7 +3,7 @@ import {Topic} from "./Topic";
 
 export class Discourse {
   id: number;
-  member: ChurchMember;
+  churchMember: ChurchMember;
   topic: Topic;
   assignedBy:ChurchMember;
   date: Date;

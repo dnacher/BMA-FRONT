@@ -17,8 +17,8 @@ export class DiscourseComponent implements OnInit {
 
   discourse: Discourse = new Discourse();
   discourses: Discourse[]= [];
-  mr: ChurchMember= new ChurchMember();
   members: ChurchMember[]= [];
+  assignedByList: ChurchMember[] = [];
   topics: Topic[]=[];
 
   currentPage: number = 1;
@@ -48,6 +48,7 @@ export class DiscourseComponent implements OnInit {
   loadData() {
     this.loadMembers();
     this.loadDiscourses();
+    this.loadAssignedBy();
     this.loadTopics();
   }
 
@@ -67,6 +68,13 @@ export class DiscourseComponent implements OnInit {
   loadMembers(){
     this.dataMemberService.getMembers().subscribe(
       data=> {this.members = data;
+      }
+    );
+  }
+
+  loadAssignedBy(){
+    this.dataMemberService.getMembers().subscribe(
+      data=> {this.assignedByList = data;
       }
     );
   }
