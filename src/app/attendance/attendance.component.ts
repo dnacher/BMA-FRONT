@@ -38,13 +38,15 @@ export class AttendanceComponent implements OnInit {
   SendAttendance(){
     if(this.attendances[0].id!=null){
       this.dataAttendanceService.updateAttendances(this.attendances).subscribe(
+        //to remove the error on console.log -> npm install @types/node --save-dev
+        // You may also need to explicitly include the node typedefs in your tsconfig.json like so: "types": ["node"]
         data => this.loadMembers(),info => console.log(info));
     }else{
       this.dataAttendanceService.saveAttendances(this.attendances).subscribe(
         data => this.loadMembers(),
-        info => console.log(info));
+        info => console.log(info)
+      );
     }
     // this.dataAttendanceService.saveAttendanceList(this.attendances);
-
   }
 }
