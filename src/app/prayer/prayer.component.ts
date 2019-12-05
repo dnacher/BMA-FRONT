@@ -3,6 +3,8 @@ import {DataMemberService} from "../services/data.member.service";
 import {ChurchMember} from "../classes/ChurchMember";
 import {Prayer} from "../classes/Prayer";
 import {DataPrayerService} from "../services/data.prayer.service";
+import {DialogComponent} from "../dialog/dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-discourse',
@@ -18,7 +20,9 @@ export class PrayerComponent implements OnInit {
 
   currentPage: number = 1;
 
-  constructor(private dataPrayerService: DataPrayerService, private dataMemberService: DataMemberService) {
+  constructor(private dataPrayerService: DataPrayerService,
+              private dataMemberService: DataMemberService,
+              private dialog: MatDialog) {
     this.loadData();
    }
 
@@ -38,6 +42,15 @@ export class PrayerComponent implements OnInit {
       data => this.loadData(),
       info => console.log(info));
     this.loadData();
+  }
+
+  deleteDialog(prayer: Prayer){
+    let dialogRef = this.dialog.open(DialogComponent, {data:{title: "Are you sure?", text:"do you really want to delete this prayer?", secondButton: true}});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result=="true"){
+        this.delete(prayer);
+      }
+    });
   }
 
   loadData() {
@@ -63,7 +76,7 @@ export class PrayerComponent implements OnInit {
     if(this.prayer.churchMember!=null){
       this.save();
     }else{
-      alert("Please fill the form");
+      this.dialog.open(DialogComponent, {data: {title:"Warning", text:"Please, fill the form", secondButton: false}});
     }
     this.loadPrayers();
     this.prayer = new Prayer();

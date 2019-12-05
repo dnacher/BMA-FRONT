@@ -18,7 +18,7 @@
      <tr class="table-light" *ngFor="let topic of topics | paginate: {itemsPerPage: 10, currentPage: currentPage}">
        <td><a routerLink="/members/{{topic.id}}">{{topic.name}}</a></td>
 <!--       <td><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>-->
-       <td><button class="btn btn-danger" (click)="delete(topic)"><i class="fa fa-trash"></i></button></td>
+       <td><button class="btn btn-danger" (click)="deleteDialog(topic)"><i class="fa fa-trash"></i></button></td>
      </tr>
      </tbody>
    </table>

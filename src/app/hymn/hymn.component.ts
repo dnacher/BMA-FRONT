@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Hymn} from "../classes/Hymn";
 import {DataHymnService} from "../services/data.hymn.service";
+import {DialogComponent} from "../dialog/dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-hymn',
@@ -15,7 +17,8 @@ export class HymnComponent implements OnInit {
   currentPage: number = 1;
   hymns: Hymn[];
 
-  constructor(private data: DataHymnService) {
+  constructor(private data: DataHymnService,
+              private dialog: MatDialog) {
     this.loadData();
    }
 
@@ -40,9 +43,24 @@ export class HymnComponent implements OnInit {
     if(this.hymn.title!=null){
       this.save();
     }else{
-      alert("Please fill the form");
+      this.dialog.open(DialogComponent, {data: {title:"Warning", text:"Please, fill the form", secondButton: false}});
     }
+  }
 
+  deleteDialog(hymn: Hymn){
+    let dialogRef = this.dialog.open(DialogComponent, {data:{title: "Are you sure?", text:"do you really want to delete this hymn?", secondButton: true}});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result=="true"){
+        this.delete(hymn);
+      }
+    });
+  }
+
+  delete(hymn: Hymn){
+    this.data.deleteHymn(hymn.id).subscribe(
+      data => this.loadData(),
+      info => console.log(info));
+    this.loadData();
   }
 
 }

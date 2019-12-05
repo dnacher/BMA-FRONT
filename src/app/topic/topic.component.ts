@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Topic} from "../classes/Topic";
 import {DataTopicService} from "../services/data.topic.service";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogComponent} from "../dialog/dialog.component";
 
 @Component({
   selector: 'app-Topic',
@@ -14,7 +16,8 @@ export class TopicComponent implements OnInit {
   currentPage: number = 1;
   topics: Topic[];
 
-  constructor(private data: DataTopicService) {
+  constructor(private data: DataTopicService,
+              private dialog: MatDialog) {
     this.loadData();
    }
 
@@ -40,7 +43,7 @@ export class TopicComponent implements OnInit {
     if(this.topic.name!=null){
       this.save();
     }else{
-      alert("Please fill the form");
+      this.dialog.open(DialogComponent, {data: {title:"Warning", text:"Please, fill the form", secondButton: false}});
     }
   }
 
@@ -49,6 +52,15 @@ export class TopicComponent implements OnInit {
       data => this.loadData(),
       info => console.log(info));
     this.loadData();
+  }
+
+  deleteDialog(topic: Topic){
+    let dialogRef = this.dialog.open(DialogComponent, {data:{title: "Are you sure?", text:"do you really want to delete this Topic?", secondButton: true}});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result=="true"){
+        this.delete(topic);
+      }
+    });
   }
 
 }

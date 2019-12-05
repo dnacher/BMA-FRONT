@@ -20,6 +20,7 @@ import {PrayerComponent} from "./prayer/prayer.component";
 import {OrganizationComponent} from "./organization/organization.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import { DialogComponent } from './dialog/dialog.component';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DialogComponent } from './dialog/dialog.component';
     BrowserAnimationsModule,
     NgSelectModule,
     NgxPaginationModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

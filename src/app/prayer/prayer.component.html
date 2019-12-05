@@ -35,7 +35,7 @@
            <td><a routerLink="/discourses/{{prayer.id}}">{{prayer.date | date:'yyyy-MM-dd'}}</a></td>
            <td>{{prayer.churchMember.fullname}}</td>
 <!--           <td><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>-->
-           <td><button class="btn btn-danger" (click)="delete(prayer)"><i class="fa fa-trash"></i></button></td>
+           <td><button class="btn btn-danger" (click)="deleteDialog(prayer)"><i class="fa fa-trash"></i></button></td>
          </tr>
        </tbody>
      </table>

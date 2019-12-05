@@ -5,6 +5,8 @@ import {Organization} from "../classes/Organization";
 import {Calling} from "../classes/Calling";
 import {DataCallingService} from "../services/data.calling.service";
 import {DataOrganizationService} from "../services/data.organization.service";
+import {DialogComponent} from "../dialog/dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 
 @Component({
@@ -25,7 +27,8 @@ export class MemberComponent implements OnInit {
 
   constructor(private dataMemberService: DataMemberService,
               private dataCallingService: DataCallingService,
-              private dataOrganizationService: DataOrganizationService) {
+              private dataOrganizationService: DataOrganizationService,
+              private dialog: MatDialog) {
     this.loadData();
    }
 
@@ -71,7 +74,7 @@ export class MemberComponent implements OnInit {
 
       this.save();
     }else{
-      alert("Please fill the form");
+      this.dialog.open(DialogComponent, {data: {title:"Warning", text:"Please, fill the form", secondButton: false}});
     }
   }
 
@@ -80,6 +83,15 @@ export class MemberComponent implements OnInit {
       data => this.loadData(),
       info => console.log(info));
     this.loadData();
+  }
+
+  deleteDialog(member: ChurchMember){
+    let dialogRef = this.dialog.open(DialogComponent, {data:{title: "Are you sure?", text:"do you really want to delete this calling?", secondButton: true}});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result=="true"){
+        this.delete(member);
+      }
+    });
   }
 
   edit(member: ChurchMember){

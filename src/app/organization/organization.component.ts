@@ -16,7 +16,8 @@ export class OrganizationComponent implements OnInit {
   currentPage: number = 1;
   organizations: Organization[];
 
-  constructor(private data: DataOrganizationService, public dialog: MatDialog) {
+  constructor(private data: DataOrganizationService,
+              private dialog: MatDialog) {
     this.loadData();
    }
 
@@ -42,9 +43,17 @@ export class OrganizationComponent implements OnInit {
     if(this.organization.name!=null){
       this.save();
     }else{
-      this.openDialog();
-      // alert("Please fill the form");
+      this.dialog.open(DialogComponent, {data: {title:"Warning", text:"Please, fill the form", secondButton: false}});
     }
+  }
+
+  deleteDialog(organization: Organization){
+    let dialogRef = this.dialog.open(DialogComponent, {data:{title: "Are you sure?", text:"do you really want to delete this organization?", secondButton: true}});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result=="true"){
+        this.delete(organization);
+      }
+    });
   }
 
   delete(organization: Organization){
@@ -52,10 +61,6 @@ export class OrganizationComponent implements OnInit {
       data => this.loadData(),
       info => console.log(info));
     this.loadData();
-  }
-
-  openDialog(){
-    this.dialog.open(DialogComponent);
   }
 
 }

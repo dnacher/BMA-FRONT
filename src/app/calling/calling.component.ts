@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Calling} from "../classes/Calling";
 import {DataCallingService} from "../services/data.calling.service";
+import {DialogComponent} from "../dialog/dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-Topic',
@@ -14,7 +16,8 @@ export class CallingComponent implements OnInit {
   currentPage: number = 1;
   callings: Calling[];
 
-  constructor(private data: DataCallingService) {
+  constructor(private data: DataCallingService,
+              private dialog: MatDialog) {
     this.loadData();
   }
 
@@ -40,8 +43,17 @@ export class CallingComponent implements OnInit {
     if(this.calling.name!=null){
       this.save();
     }else{
-      alert("Please fill the form");
+      this.dialog.open(DialogComponent, {data: {title:"Warning", text:"Please, fill the form", secondButton: false}});
     }
+  }
+
+  deleteDialog(calling: Calling){
+    let dialogRef = this.dialog.open(DialogComponent, {data:{title: "Are you sure?", text:"do you really want to delete this calling?", secondButton: true}});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result=="true"){
+        this.delete(calling);
+      }
+    });
   }
 
   delete(calling: Calling){
