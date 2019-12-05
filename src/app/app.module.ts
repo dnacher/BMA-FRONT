@@ -16,6 +16,10 @@ import {NgSelectModule} from "@ng-select/ng-select";
 import {AttendanceComponent} from "./attendance/attendance.component";
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TopicComponent} from "./topic/topic.component";
+import {PrayerComponent} from "./prayer/prayer.component";
+import {OrganizationComponent} from "./organization/organization.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +32,12 @@ import {TopicComponent} from "./topic/topic.component";
     DiscourseComponent,
     CallingComponent,
     AttendanceComponent,
-    TopicComponent
+    TopicComponent,
+    PrayerComponent,
+    OrganizationComponent,
+    DialogComponent
   ],
+  entryComponents: [DialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,7 +45,8 @@ import {TopicComponent} from "./topic/topic.component";
     FormsModule,
     BrowserAnimationsModule,
     NgSelectModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

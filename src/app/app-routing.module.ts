@@ -7,6 +7,9 @@ import {MemberComponent} from "./member/member.component";
 import {DiscourseComponent} from "./discourse/discourse.component";
 import {AttendanceComponent} from "./attendance/attendance.component";
 import {TopicComponent} from "./topic/topic.component";
+import {CallingComponent} from "./calling/calling.component";
+import {PrayerComponent} from "./prayer/prayer.component";
+import {OrganizationComponent} from "./organization/organization.component";
 
 const routes: Routes = [
   {
@@ -30,8 +33,20 @@ const routes: Routes = [
     component: DiscourseComponent
   },
   {
+    path: 'callings',
+    component: CallingComponent
+  },
+  {
+    path: 'prayers',
+    component: PrayerComponent
+  },
+  {
     path: 'attendances',
     component: AttendanceComponent
+  },
+  {
+    path: 'organizations',
+    component: OrganizationComponent
   },
   {
     path: 'topics',

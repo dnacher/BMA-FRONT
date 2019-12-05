@@ -3,21 +3,20 @@ import {Calling} from "../classes/Calling";
 import {DataCallingService} from "../services/data.calling.service";
 
 @Component({
-  selector: 'app-hymn',
+  selector: 'app-Topic',
   templateUrl: './calling.component.html',
   styleUrls: ['./calling.component.scss']
 })
 
 export class CallingComponent implements OnInit {
 
-
   calling: Calling = new Calling();
-
+  currentPage: number = 1;
   callings: Calling[];
 
   constructor(private data: DataCallingService) {
     this.loadData();
-   }
+  }
 
   ngOnInit() {
     this.loadData();
@@ -27,13 +26,14 @@ export class CallingComponent implements OnInit {
     this.data.saveCalling(this.calling).subscribe(
       data => this.loadData(),
       info => console.log(info));
-      this.loadData();
+    this.loadData();
     this.calling = new Calling();
   }
 
   loadData() {
     this.data.getCallings().subscribe(
-      data => {this.calling = data;});
+      data => {this.callings = data;
+      });
   }
 
   onSubmit() {
@@ -42,7 +42,13 @@ export class CallingComponent implements OnInit {
     }else{
       alert("Please fill the form");
     }
+  }
 
+  delete(calling: Calling){
+    this.data.deleteCalling(calling.id).subscribe(
+      data => this.loadData(),
+      info => console.log(info));
+    this.loadData();
   }
 
 }

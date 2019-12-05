@@ -9,7 +9,6 @@ import {Calling} from "../classes/Calling";
 
 export class DataCallingService {
 
-  // private baseUrl = 'https://bma-back.herokuapp.com/callings';
   private baseUrl = 'http://localhost:8080/callings';
   constructor(private http: HttpClient) {   }
 

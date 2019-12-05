@@ -33,8 +33,8 @@ export class DataMemberService {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  updateMember(id: number, member: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, member);
+  updateMember(id: number, member: ChurchMember): Observable<any> {
+    return this.http.put(`${this.baseUrl}` + `/${id}`, member);
   }
 
 }

@@ -1,0 +1,30 @@
+<h1>Organizations</h1>
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="organization.name" name="name" required>
+    </div><br>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add Organization</button>
+  <div *ngIf="organizations !=null" class="opacity" style="opacity: 0.9;">
+    <br>
+   <table class="table table-hover">
+     <thead>
+     <tr class="table-primary">
+       <th scope="col">Name</th>
+<!--       <th scope="col">Edit</th>-->
+       <th scope="col">Delete</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr class="table-light" *ngFor="let organization of organizations | paginate: {itemsPerPage: 10, currentPage: currentPage}">
+       <td><a routerLink="/members/{{organization.id}}">{{organization.name}}</a></td>
+<!--       <td><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>-->
+       <td><button class="btn btn-danger" (click)="delete(organization)"><i class="fa fa-trash"></i></button></td>
+     </tr>
+     </tbody>
+   </table>
+   <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+ </div>
+ <div *ngIf="organizations == null">
+   <br><br>
+  <h3>No Organizations to display</h3>
+</div>

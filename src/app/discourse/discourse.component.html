@@ -43,7 +43,7 @@
          <th scope="col">Date</th>
          <th scope="col">Name</th>
          <th scope="col">Topic</th>
-         <th scope="col">Edit</th>
+<!--         <th scope="col">Edit</th>-->
          <th scope="col">Delete</th>
        </tr>
      </thead>
@@ -52,7 +52,7 @@
          <td><a routerLink="/discourses/{{discourse.id}}">{{discourse.date | date:'yyyy-MM-dd'}}</a></td>
          <td>{{discourse.churchMember.fullname}}</td>
          <td>{{discourse.topic.name}}</td>
-         <td><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>
+<!--         <td><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>-->
          <td><button class="btn btn-danger" (click)="delete(discourse)"><i class="fa fa-trash"></i></button></td>
        </tr>
      </tbody>
