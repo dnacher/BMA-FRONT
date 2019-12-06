@@ -24,9 +24,8 @@
                  [(ngModel)]="member.organization">
       </ng-select>
     </div><br>
-
     <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add Member</button>
-
+<br><input type="text" #myInput [(ngModel)]="filterText" (input)="Search()"/>
  <div *ngIf="members !=null" class="opacity" style="opacity: 0.9;">
     <br>
    <table class="table table-hover">
@@ -53,7 +52,7 @@
      </tr>
      </tbody>
    </table>
-   <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+   <pagination-controls class="paginator" (pageChange)="currentPage = $event"></pagination-controls>
  </div>
  <div *ngIf="members == null">
    <br><br>

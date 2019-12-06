@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HymnComponent} from "./hymn/hymn.component";
 import {HttpClientModule } from '@angular/common/http';
-import { DetailAuthorComponent } from './detail-author/detail-author.component';
 import { IndexComponent } from './index/index.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MemberComponent} from "./member/member.component";
@@ -28,7 +27,6 @@ import {NgxSpinnerModule} from "ngx-spinner";
     SidebarComponent,
     HymnComponent,
     MemberComponent,
-    DetailAuthorComponent,
     IndexComponent,
     DiscourseComponent,
     CallingComponent,

@@ -1,14 +1,18 @@
 
 <div class="container">
+  <!--Header Row-->
   <div class="row">
     <div class="col">
       <h1>Attendance</h1><br>
     </div>
     <div class="col"></div>
   </div>
-    <div *ngIf="!(isLoading)">
+  <!--End Header Row-->
+
+  <!--  Body row-->
+  <div *ngIf="!(isLoading)">
     <div class="row">
-      <div class="col">
+      <div class="col-xl-12">
         <br>
         <div>
           <table class="table table-hover">
@@ -17,7 +21,7 @@
               <th scope="col">Id</th>
               <th scope="col">Name</th>
               <th scope="col">Surname</th>
-              <th scope="col">date</th>
+              <th scope="col">Date</th>
               <th scope="col">Attendance</th>
             </tr>
             </thead>
@@ -35,26 +39,36 @@
               </tr>
             </tbody>
           </table>
-          <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+          <pagination-controls  class="paginator"
+                                [responsive]="true"
+                               (pageChange)="currentPage = $event"></pagination-controls>
         </div>
       </div>
     </div>
+    <!--End Body Row-->
+
+    <!--Footer Row-->
     <div class="row">
       <div class="col"></div>
       <div class="col"></div>
       <div class="col"></div>
       <div class="col-auto">
-        <button class="btn btn-primary btn-lg" (click)="SendAttendance()">Send</button>
+        <button class="btn btn-dark btn-lg" (click)="SendAttendance()">Send</button>
       </div>
     </div>
+    <!--End Footer Row-->
     </div>
-        <div *ngIf="isLoading" >
-          <ngx-spinner
-            bdColor="rgba(51,51,51,0.7)"
-            size="large"
-            color="#5ebef5"
-            type="ball-atom">
-            <p style="font-size: 20px; color: white"><br>We are evaluating attendances and sending emails, Please wait while the process is over</p>
-          </ngx-spinner>
-        </div>
-    </div>
+    <!--End Loading Area-->
+
+  <!--Spinner-->
+  <div *ngIf="isLoading" >
+    <ngx-spinner  bdColor="rgba(51,51,51,0.7)"
+                  size="large"
+                  color="#5ebef5"
+                  type="ball-atom">
+                  <p style="font-size: 20px; color: white"><br>We are evaluating attendances and sending emails, Please wait while the process is over</p>
+    </ngx-spinner>
+  </div>
+  <!--End of Spinner-->
+</div>
+<!--End of Container-->

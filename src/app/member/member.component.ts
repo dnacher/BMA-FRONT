@@ -21,9 +21,11 @@ export class MemberComponent implements OnInit {
   member: ChurchMember = new ChurchMember();
   currentPage: number = 1;
   members: ChurchMember[];
+  filterMembers: ChurchMember[]=[];
   organizations: Organization[];
   callings: Calling[];
   isUpdating: boolean = false;
+  filterText: string= "";
 
   constructor(private dataMemberService: DataMemberService,
               private dataCallingService: DataCallingService,
@@ -91,6 +93,13 @@ export class MemberComponent implements OnInit {
       if(result=="true"){
         this.delete(member);
       }
+    });
+  }
+
+  Search(){
+    console.log(this.filterText);
+    this.members = this.members.filter(member => {
+       member.fullname.toLocaleLowerCase().match(this.filterText.toLocaleLowerCase());
     });
   }
 
