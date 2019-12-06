@@ -9,6 +9,8 @@ import {TopicComponent} from "./topic/topic.component";
 import {CallingComponent} from "./calling/calling.component";
 import {PrayerComponent} from "./prayer/prayer.component";
 import {OrganizationComponent} from "./organization/organization.component";
+import {SacramentMeeting} from "./classes/SacramentMeeting";
+import {SacramentMeetingComponent} from "./sacrament-meeting/sacrament-meeting.component";
 
 const routes: Routes = [
   {
@@ -42,6 +44,10 @@ const routes: Routes = [
   {
     path: 'organizations',
     component: OrganizationComponent
+  },
+  {
+    path: 'sacrament-meetings',
+    component: SacramentMeetingComponent
   },
   {
     path: 'topics',

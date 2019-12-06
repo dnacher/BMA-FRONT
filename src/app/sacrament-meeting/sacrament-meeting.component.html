@@ -1,0 +1,58 @@
+<mat-vertical-stepper [linear]="false" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Introduction</ng-template>
+
+      <div class="col-xs-12 col-12 col-md-4 form-group">
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+          <label for="member">Date</label>
+          <input id="datePicker" type="date"
+                 placeholder="Datepicker"
+                 class="form-control"
+                 [(ngModel)]="sacramentMeeting.date"
+                 [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="col-xs-12 col-12 col-md-10 form-group">
+          <label *ngIf="sacramentMeeting.preside!=null">Preside: {{sacramentMeeting.preside.fullname}} </label>
+          <button class="col-xs-12 col-12 col-md-10 form-group" style="margin-left: 10px;" (click)="addPreside()" class="btn btn-primary">Preside</button>
+        </div>
+        <div class="col-xs-12 col-12 col-md-10 form-group">
+          <label *ngIf="sacramentMeeting.lead!=null">Lead: {{sacramentMeeting.lead.fullname}} </label>
+          <button (click)="addLead()" style="margin-left: 10px" class="btn btn-primary">Lead</button>
+        </div>
+        <div class="col-xs-12 col-12 col-md-9 form-group">
+          <label for="member">Member</label>
+          <div *ngIf="members !=null" class="ng-input">
+            <ng-select id="member" [items]="members"
+                       bindLabel="fullname"
+                       [(ngModel)]="member"
+                       [ngModelOptions]="{standalone: true}">
+            </ng-select>
+          </div><br>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-12 col-md-4 form-group">
+        <button style="text-align: left" class="btn btn-primary" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>After sacreaments</ng-template>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      <div>
+        <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+        <button style="text-align: left" class="btn btn-primary" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>end</ng-template>
+    You are now done.
+    <div>
+      <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+      <button style="text-align: left" class="btn btn-primary" mat-button>Save</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>

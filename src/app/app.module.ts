@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -20,6 +20,10 @@ import {OrganizationComponent} from "./organization/organization.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import { DialogComponent } from './dialog/dialog.component';
 import {NgxSpinnerModule} from "ngx-spinner";
+import { SacramentMeetingComponent } from './sacrament-meeting/sacrament-meeting.component';
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -34,7 +38,9 @@ import {NgxSpinnerModule} from "ngx-spinner";
     TopicComponent,
     PrayerComponent,
     OrganizationComponent,
-    DialogComponent
+    DialogComponent,
+    SacramentMeetingComponent,
+
   ],
   entryComponents: [DialogComponent],
   imports: [
@@ -46,7 +52,11 @@ import {NgxSpinnerModule} from "ngx-spinner";
     NgSelectModule,
     NgxPaginationModule,
     MatDialogModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
