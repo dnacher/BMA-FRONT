@@ -1,10 +1,11 @@
 <mat-vertical-stepper [linear]="false" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Introduction</ng-template>
+      <!-- Beginning Part -->
+      <ng-template matStepLabel>Beginning</ng-template>
 
       <div class="col-xs-12 col-12 col-md-4 form-group">
-        <div class="col-xs-12 col-12 col-md-4 form-group">
+        <div class="col-xs-12 col-12 col-md-8 form-group">
           <label for="member">Date</label>
           <input id="datePicker" type="date"
                  placeholder="Datepicker"
@@ -39,20 +40,42 @@
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>After sacreaments</ng-template>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+
+      <!-- Sacrament Part -->
+      <ng-template matStepLabel>Sacrament</ng-template>
       <div>
+
+        <label for="hymnsList">Sacrament Hymn</label>
+        <div *ngIf="hymns !=null" class="ng-input">
+          <ng-select id="hymnsList" [items]="hymns"
+                     bindLabel=title
+                     [(ngModel)]="sacramentHymn">
+          </ng-select>
+        </div><br>
+        <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious>Add Hymn</button><br>
+
         <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious>Back</button>
         <button style="text-align: left" class="btn btn-primary" mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>end</ng-template>
+    <ng-template matStepLabel>Discourses</ng-template>
+      <div>
+        <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+        <button style="text-align: left" class="btn btn-primary" mat-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+
+  <mat-step>
+
+    <!-- Ending Part -->
+    <ng-template matStepLabel>Ending</ng-template>
     You are now done.
     <div>
       <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious>Back</button>
       <button style="text-align: left" class="btn btn-primary" mat-button>Save</button>
     </div>
   </mat-step>
+
 </mat-vertical-stepper>

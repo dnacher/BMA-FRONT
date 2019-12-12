@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ChurchMember} from "../classes/ChurchMember";
 import {DataMemberService} from "../services/data.member.service";
 import {SacramentMeeting} from "../classes/SacramentMeeting";
+import {Hymn} from "../classes/Hymn";
+import {DataHymnService} from "../services/data.hymn.service";
 
 @Component({
   selector: 'app-sacrament-meeting',
@@ -15,10 +17,13 @@ export class SacramentMeetingComponent implements OnInit {
   secondFormGroup: FormGroup;
   member: ChurchMember;
   members: ChurchMember[]= [];
+  hymns: Hymn[]=[];
+  sacramentHymn: Hymn;
   sacramentMeeting: SacramentMeeting= new SacramentMeeting();
 
   constructor(private _formBuilder: FormBuilder,
-              private dataMemberService: DataMemberService,) {}
+              private dataMemberService: DataMemberService,
+              private dataHymnService: DataHymnService,) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -28,11 +33,19 @@ export class SacramentMeetingComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
     this.loadMembers();
+    this.loadHymns();
   }
 
   loadMembers(){
     this.dataMemberService.getMembers().subscribe(
       data=> {this.members = data;
+      }
+    );
+  }
+
+  loadHymns(){
+    this.dataHymnService.getHymns().subscribe(
+      data=> {this.hymns = data;
       }
     );
   }
