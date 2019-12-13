@@ -5,6 +5,10 @@ import {DataMemberService} from "../services/data.member.service";
 import {SacramentMeeting} from "../classes/SacramentMeeting";
 import {Hymn} from "../classes/Hymn";
 import {DataHymnService} from "../services/data.hymn.service";
+import {Discourse} from "../classes/Discourse";
+import {DataDiscourseService} from "../services/data.discourse.service";
+import {Prayer} from "../classes/Prayer";
+import {DataPrayerService} from "../services/data.prayer.service";
 
 @Component({
   selector: 'app-sacrament-meeting',
@@ -20,10 +24,17 @@ export class SacramentMeetingComponent implements OnInit {
   hymns: Hymn[]=[];
   sacramentHymn: Hymn;
   sacramentMeeting: SacramentMeeting= new SacramentMeeting();
+  discourses: Discourse[]= [];
+  discourse: Discourse;
+  endingPrayer: Prayer;
+  beginningPrayer: Prayer;
+  prayers: Prayer[] = [];
 
   constructor(private _formBuilder: FormBuilder,
               private dataMemberService: DataMemberService,
-              private dataHymnService: DataHymnService,) {}
+              private dataHymnService: DataHymnService,
+              private dataDiscourseService: DataDiscourseService,
+              private dataPrayerService: DataPrayerService) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -34,6 +45,8 @@ export class SacramentMeetingComponent implements OnInit {
     });
     this.loadMembers();
     this.loadHymns();
+    this.loadDiscourses();
+    this.loadPrayers();
   }
 
   loadMembers(){
@@ -50,6 +63,20 @@ export class SacramentMeetingComponent implements OnInit {
     );
   }
 
+  loadDiscourses(){
+    this.dataDiscourseService.getDiscourses().subscribe(
+      data=> {this.discourses = data;
+      }
+    );
+  }
+
+  loadPrayers(){
+    this.dataPrayerService.getPrayers().subscribe(
+      data=> {this.prayers = data;
+      }
+    );
+  }
+
 
   addPreside(){
     this.sacramentMeeting.preside = this.member;
@@ -57,6 +84,19 @@ export class SacramentMeetingComponent implements OnInit {
 
   addLead(){
     this.sacramentMeeting.lead = this.member;
+  }
+
+  addHymn(){
+    this.sacramentMeeting.hymns.push(this.sacramentHymn)
+  }
+
+  addDiscourse(){
+    this.sacramentMeeting.discourses.push(this.discourse)
+  }
+
+  deleteDiscourse(discourse: Discourse){
+    let ind = this.sacramentMeeting.discourses.indexOf(discourse);
+    this.sacramentMeeting.discourses.splice(ind,1);
   }
 
 }

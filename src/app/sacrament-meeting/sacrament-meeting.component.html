@@ -1,6 +1,5 @@
 <mat-vertical-stepper [linear]="false" #stepper>
   <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
       <!-- Beginning Part -->
       <ng-template matStepLabel>Beginning</ng-template>
 
@@ -15,11 +14,11 @@
         </div>
         <div class="col-xs-12 col-12 col-md-10 form-group">
           <label *ngIf="sacramentMeeting.preside!=null">Preside: {{sacramentMeeting.preside.fullname}} </label>
-          <button class="col-xs-12 col-12 col-md-10 form-group" style="margin-left: 10px;" (click)="addPreside()" class="btn btn-primary">Preside</button>
+          <button class="col-xs-12 col-12 col-md-10 form-group" style="margin-left: 10px;" (click)="addPreside()" class="btn-sm btn-primary">Preside</button>
         </div>
         <div class="col-xs-12 col-12 col-md-10 form-group">
           <label *ngIf="sacramentMeeting.lead!=null">Lead: {{sacramentMeeting.lead.fullname}} </label>
-          <button (click)="addLead()" style="margin-left: 10px" class="btn btn-primary">Lead</button>
+          <button (click)="addLead()" style="margin-left: 10px" class="btn-sm btn-primary">Lead</button>
         </div>
         <div class="col-xs-12 col-12 col-md-9 form-group">
           <label for="member">Member</label>
@@ -30,16 +29,24 @@
                        [ngModelOptions]="{standalone: true}">
             </ng-select>
           </div><br>
+          <label>Announcements</label><br>
+          <textarea [(ngModel)]="sacramentMeeting.announcements"></textarea><br>
+          <label>Prayer</label><br>
+          <div *ngIf="prayers !=null" class="ng-input">
+            <ng-select id="prayersListBeginning" [items]="prayers"
+                       bindLabel=churchMember.fullname
+                       [(ngModel)]="beginningPrayer">
+            </ng-select>
+          </div><br>
         </div>
       </div>
 
       <div class="col-xs-12 col-12 col-md-4 form-group">
-        <button style="text-align: left" class="btn btn-primary" mat-button matStepperNext>Next</button>
+        <button style="text-align: left" class="btn btn-primary" mat-button matStepperNext> > </button>
       </div>
-    </form>
   </mat-step>
+  <!-- End Beginning -->
   <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
 
       <!-- Sacrament Part -->
       <ng-template matStepLabel>Sacrament</ng-template>
@@ -52,28 +59,62 @@
                      [(ngModel)]="sacramentHymn">
           </ng-select>
         </div><br>
-        <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious>Add Hymn</button><br>
+        <button class="btn-sm btn-primary" mat-button matStepperPrevious (click)="addHymn">Add Hymn</button><br><br>
 
-        <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-        <button style="text-align: left" class="btn btn-primary" mat-button matStepperNext>Next</button>
+        <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious> < </button>
+        <button style="text-align: left" class="btn btn-primary" mat-button matStepperNext> > </button>
       </div>
-    </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Discourses</ng-template>
+
+    <div *ngIf="discourses !=null" class="opacity" style="opacity: 0.9;">
+      <br>
+      <table class="table table-hover">
+        <thead>
+        <tr class="table-primary">
+          <th scope="col">Date</th>
+          <th scope="col">Name</th>
+          <th scope="col">Topic</th>
+          <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-light" *ngFor="let discourse of sacramentMeeting.discourses">
+          <td><a routerLink="/discourses/{{discourse.id}}">{{discourse.date | date:'yyyy-MM-dd'}}</a></td>
+          <td>{{discourse.churchMember.fullname}}</td>
+          <td>{{discourse.topic.name}}</td>
+          <td><button class="btn btn-danger" (click)="deleteDiscourse(discourse)"><i class="fa fa-trash"></i></button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
       <div>
-        <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-        <button style="text-align: left" class="btn btn-primary" mat-button matStepperNext>Next</button>
+        <div *ngIf="hymns !=null" class="ng-input">
+          <ng-select id="discoursesList" [items]="discourses"
+                     bindLabel=churchMember.fullname
+                     [(ngModel)]="discourse">
+          </ng-select>
+        </div><br>
+        <button class="col-xs-12 col-12 col-md-10 form-group" style="margin-left: 10px;" (click)="addDiscourse()" class="btn-sm btn-primary">add Discourse</button>
+        <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious> < </button>
+        <button style="text-align: left" class="btn btn-primary" mat-button matStepperNext> > </button>
       </div>
   </mat-step>
-
+  <!-- End Sacrament Part -->
   <mat-step>
-
     <!-- Ending Part -->
     <ng-template matStepLabel>Ending</ng-template>
-    You are now done.
+    <div *ngIf="prayers !=null" class="ng-input">
+      <ng-select id="prayersList" [items]="prayers"
+                 bindLabel=churchMember.fullname
+                 [(ngModel)]="endingPrayer">
+      </ng-select>
+    </div><br>
     <div>
-      <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+      <button style="text-align: left" class="btn btn-primary" mat-button matStepperPrevious> < </button>
       <button style="text-align: left" class="btn btn-primary" mat-button>Save</button>
     </div>
   </mat-step>

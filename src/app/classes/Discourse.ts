@@ -7,4 +7,5 @@ export class Discourse {
   topic: Topic;
   assignedBy:ChurchMember;
   date: Date;
+
 }

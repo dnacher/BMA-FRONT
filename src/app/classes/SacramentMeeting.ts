@@ -7,13 +7,12 @@ import {SustainingRelease} from "./SustainingRelease";
 export class SacramentMeeting {
     id: number;
     date: Date;
-    hymns: Hymn[];
+    hymns: Hymn[]= [];
     announcements: string;
-    sustainingReleases: SustainingRelease[];
-    prayers: Prayer[];
-    discourses: Discourse[];
+    sustainingReleases: SustainingRelease[]=[];
+    prayers: Prayer[]=[];
+    discourses: Discourse[] = [];
     preside: ChurchMember;
     lead: ChurchMember;
     assistance: number;
-
 }
