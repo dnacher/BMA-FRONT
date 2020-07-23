@@ -9,7 +9,8 @@ import {Topic} from "../classes/Topic";
 
 export class DataTopicService {
 
-  private baseUrl = 'http://localhost:8080/topics';
+  private baseUrl = 'https://bma-b.herokuapp.com/topics';
+  // private baseUrl = 'http://localhost:8080/topics';
   constructor(private http: HttpClient) {   }
 
   getTopics(): Observable<any> {

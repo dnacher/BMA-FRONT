@@ -9,8 +9,8 @@ import {SacramentMeeting} from "../classes/SacramentMeeting";
 
 export class DataSacramentMeetingService {
 
-  // private baseUrl = 'https://bma-back.herokuapp.com/sacrament_meetings';
-  private baseUrl = 'http://localhost:8080/sacrament_meetings';
+  private baseUrl = 'https://bma-b.herokuapp.com/sacrament_meetings';
+  // private baseUrl = 'http://localhost:8080/sacrament_meetings';
   constructor(private http: HttpClient) {   }
 
   getSacramentMeetings(): Observable<any> {
