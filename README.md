@@ -1,5 +1,8 @@
 # BmaFront
 
+# live app testing 
+# https://nervous-golick-17c8a6.netlify.app/
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
 
 ## Development server
