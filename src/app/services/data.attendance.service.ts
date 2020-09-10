@@ -11,7 +11,7 @@ import {Attendance} from "../classes/Attendance";
 
 export class DataAttendanceService {
 
-  // private baseUrl = 'https://bma-back.herokuapp.com/attendances';
+  // private baseUrl = 'https://bma-b.herokuapp.com/attendances';
   private baseUrl = 'http://localhost:8080/attendances';
 
   constructor(private http: HttpClient) {   }

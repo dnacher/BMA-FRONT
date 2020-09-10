@@ -9,6 +9,7 @@ import {Organization} from "../classes/Organization"
 
 export class DataOrganizationService {
 
+  // private baseUrl = 'https://bma-b.herokuapp.com/organizations';
   private baseUrl = 'http://localhost:8080/organizations';
   constructor(private http: HttpClient) {   }
 

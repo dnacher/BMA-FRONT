@@ -70,6 +70,7 @@ export class PrayerComponent implements OnInit {
       data=> {this.members = data;
       }
     );
+    console.debug(this.members);
   }
 
   onSubmit() {

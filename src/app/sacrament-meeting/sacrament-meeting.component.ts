@@ -9,6 +9,7 @@ import {Discourse} from "../classes/Discourse";
 import {DataDiscourseService} from "../services/data.discourse.service";
 import {Prayer} from "../classes/Prayer";
 import {DataPrayerService} from "../services/data.prayer.service";
+import {DataSacramentMeetingService} from "../services/data.sacrament-meeting.service";
 
 @Component({
   selector: 'app-sacrament-meeting',
@@ -34,7 +35,8 @@ export class SacramentMeetingComponent implements OnInit {
               private dataMemberService: DataMemberService,
               private dataHymnService: DataHymnService,
               private dataDiscourseService: DataDiscourseService,
-              private dataPrayerService: DataPrayerService) {}
+              private dataPrayerService: DataPrayerService,
+              private dataSacramentMeetingService: DataSacramentMeetingService) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -97,6 +99,13 @@ export class SacramentMeetingComponent implements OnInit {
   deleteDiscourse(discourse: Discourse){
     let ind = this.sacramentMeeting.discourses.indexOf(discourse);
     this.sacramentMeeting.discourses.splice(ind,1);
+  }
+
+  save(){
+    if(this.sacramentMeeting!=null){
+      this.dataSacramentMeetingService.saveSacramentMeeting(this.sacramentMeeting);
+    }
+
   }
 
 }

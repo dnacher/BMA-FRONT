@@ -1,11 +1,12 @@
 <h1>Prayer</h1>
   <div class="form-group">
     <label for="member">Member</label>
+    <label for="member">Member</label>
     <div *ngIf="members !=null" class="ng-input">
-        <ng-select id="member" [items]="members"
-                   bindLabel="fullname"
-                   [(ngModel)]="prayer.churchMember">
-        </ng-select>
+      <ng-select id="member" [items]="members"
+                 bindLabel="fullname"
+                 [(ngModel)]="prayer.churchMember">
+      </ng-select>
     </div><br>
     <label for="datePicker">Date</label>
     <div class="row">
