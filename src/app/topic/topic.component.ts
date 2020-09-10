@@ -27,8 +27,9 @@ export class TopicComponent implements OnInit {
 
   save() {
     this.data.saveTopic(this.topic).subscribe(
-      data => this.loadData(),
+      data => this.topic = data,
       info => console.log(info));
+      console.log(this.topic)
       this.loadData();
     this.topic = new Topic();
   }

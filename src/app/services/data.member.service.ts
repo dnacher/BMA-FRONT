@@ -9,8 +9,8 @@ import {ChurchMember} from "../classes/ChurchMember";
 
 export class DataMemberService {
 
-  private baseUrl = 'https://bma-b.herokuapp.com/members';
-  // private baseUrl = 'http://localhost:8080/members';
+  // private baseUrl = 'https://bma-b.herokuapp.com/members';
+  private baseUrl = 'http://localhost:8080/members';
   constructor(private http: HttpClient) {   }
 
   getMembers(): Observable<any> {
