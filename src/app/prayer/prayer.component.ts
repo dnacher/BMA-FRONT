@@ -18,6 +18,7 @@ export class PrayerComponent implements OnInit {
   prayers: Prayer[]= [];
   members: ChurchMember[]= [];
 
+
   currentPage: number = 1;
 
   constructor(private dataPrayerService: DataPrayerService,
